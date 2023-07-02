@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using EZCameraShake;
 
 public class GameManager : MonoBehaviour
 {
@@ -53,6 +54,22 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Thrower.thrower.StartThrowing();
+        }
+        if (Thrower.thrower.isCharging)
+        {
+            Thrower.thrower.ChargeThrow();
+        }
+        if (Input.GetKeyUp(KeyCode.T))
+        {
+            Thrower.thrower.ReleaseThrow();
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            CameraShaker.Instance.ShakeOnce(7f, 7f, .1f, 5f);
+        }
         if (Input.GetKeyDown(KeyCode.F))
         {
             if (cams[0].activeSelf)
